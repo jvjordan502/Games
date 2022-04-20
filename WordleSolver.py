@@ -5765,12 +5765,17 @@ while Correct.upper() == 'N':
     wrong_letters = input('Type in your incorrect letters: ')
     for letter in wrong_letters:
         filtered_words = [x for x in filtered_words if letter.lower() not in x]
-    yellow_letters = input('Type in your yellow letters: ')
-    narrowed_down = filtered_words
-    for lettery in yellow_letters:
-        narrowed_down = [x for x in narrowed_down if lettery.lower() in x]
-    print(narrowed_down)
-    words = narrowed_down
+    number_of_yellow = int(input('How many yellow letters do you have? '))
+    if number_of_yellow < 1:
+        filtered_words = filtered_words
+    else:
+        for i in range(number_of_yellow):
+            yellow_letters, space = input('Type in your yellow letter followed by the space number: ').split()
+            space = int(space)-1
+            for lettery in yellow_letters:
+                filtered_words = [x for x in filtered_words if lettery.lower() in x and lettery.lower() not in x[space]]
+    print(filtered_words)
+    words = filtered_words
     Correct = input('Did you get the answer? (Y/N): ')
     
 print('CONGRATS On Solving The Wordle!!!!!!')
